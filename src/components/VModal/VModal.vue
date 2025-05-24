@@ -125,7 +125,7 @@ const passThroughOptions = computed(() => ({
     // PrimeVue Dialog itself will set aria-labelledby to its header section.
     // If our description div is inside the main content slot, this should be fine.
     // For more direct control, if description is always outside the main slot:
-    // 'aria-describedby': props.description ? descriptionId : undefined,
+    'aria-describedby': props.description ? descriptionId : undefined,
   },
   mask: {
     class: [
