@@ -1,0 +1,65 @@
+{
+  "name": "ui-component-library",
+  "version": "0.1.0",
+  "description": "Vue 3 component library with PrimeVue integration",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/ui-component-library.umd.js",
+  "module": "./dist/ui-component-library.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/ui-component-library.es.js",
+      "require": "./dist/ui-component-library.umd.js"
+    },
+    "./dist/style.css": "./dist/style.css"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --emitDeclarationOnly && vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
+    "format": "prettier --write src/",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
+  },
+  "keywords": [
+    "vue",
+    "components",
+    "primevue",
+    "ui"
+  ],
+  "author": "Your Name or Company",
+  "license": "ISC",
+  "dependencies": {
+    "@primeuix/themes": "^1.1.1",
+    "@primevue/themes": "^4.3.4",
+    "primeicons": "^6.0.1",
+    "primevue": "^4.3.4",
+    "vue": "^3.2.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.7",
+    "@types/node": "^20.2.5",
+    "@vitejs/plugin-vue": "^5.2.4",
+    "@vitest/coverage-v8": "^2.1.9",
+    "@vue/test-utils": "^2.4.6",
+    "autoprefixer": "^10.4.21",
+    "happy-dom": "^17.4.7",
+    "postcss": "^8.5.3",
+    "sass": "^1.89.0",
+    "tailwindcss": "^4.1.7",
+    "tailwindcss-primeui": "^0.6.1",
+    "typescript": "^5.1.3",
+    "vite": "^6.3.5",
+    "vite-plugin-dts": "^2.3.0",
+    "vitest": "^2.1.9",
+    "vue-tsc": "^1.6.5"
+  },
+  "peerDependencies": {
+    "vue": "^3.2.0"
+  }
+}
