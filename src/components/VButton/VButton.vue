@@ -23,7 +23,7 @@
 
 <script setup lang="ts">
 import Button from 'primevue/button';
-import { computed, useSlots } from 'vue';
+import { computed } from 'vue';
 
 export interface VButtonProps { // Added export
   /** Button label */
