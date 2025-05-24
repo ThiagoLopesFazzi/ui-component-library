@@ -174,8 +174,8 @@ describe('VButton', () => {
       const ptOutput = vm.mergedPt;
 
       // Expect the default vButtonDefaultPt to be used as userPt will be {}
-      // and vButtonDefaultPt contains the base class 'v-button'
-      expect(ptOutput.root.class).toContain('v-button');
+      // and vButtonDefaultPt contains the base class 'v-button-default-root'
+      expect(ptOutput.root.class).toContain('v-button-default-root');
       // Add more specific assertions if vButtonDefaultPt has more structure
       // For example, if vButtonDefaultPt.root.class is expected to be exactly 'v-button some-default-class'
       // then expect(ptOutput.root.class).toBe('v-button some-default-class');
