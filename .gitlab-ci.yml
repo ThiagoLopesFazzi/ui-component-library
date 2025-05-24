@@ -40,9 +40,6 @@ publish:
   extends: .setup
   stage: publish
   script:
-    # Update package name to use the @vennex scope
-    - >
-      npm pkg set name="@vennex/vennex-ui"
     # Publish the package
     - npm publish
   rules:

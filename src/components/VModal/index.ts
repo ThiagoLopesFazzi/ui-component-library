@@ -1,1 +1,2 @@
-export { default as VModal } from '@/components/VModal/VModal.vue';
+export { default as VModal } from './VModal.vue';
+export type { VModalProps } from './VModal.vue';

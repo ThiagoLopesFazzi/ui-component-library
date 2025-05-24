@@ -92,6 +92,20 @@ A wrapper around PrimeVue's Button component.
 />
 ```
 
+### VModal
+
+A wrapper around a modal component, likely from PrimeVue.
+
+```vue
+<VModal :visible="isModalVisible" @update:visible="isModalVisible = $event">
+  <template #header>Modal Header</template>
+  <p>Modal content goes here.</p>
+  <template #footer>
+    <VButton label="Close" @click="isModalVisible = false" />
+  </template>
+</VModal>
+```
+
 ## Development
 
 ### Project Setup

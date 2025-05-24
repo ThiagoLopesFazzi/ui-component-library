@@ -23,7 +23,7 @@
 import { computed, useSlots } from 'vue';
 import Card from 'primevue/card';
 
-interface VCardProps {
+export interface VCardProps {
   /** Custom PassThrough options for the underlying PrimeVue component */
   pt?: object | null;
 }
@@ -46,7 +46,7 @@ const hasNamedSlots = computed(() => {
 
 const ptOptions = computed(() => {
   return {
-    ...props.pt,
+    ...(props.pt || {}),
   };
 });
 </script>

@@ -55,7 +55,7 @@ import { computed, useSlots } from 'vue';
 import Dialog from 'primevue/dialog';
 import VButton from '@/components/VButton/VButton.vue'; // Import VButton
 
-interface VModalProps {
+export interface VModalProps { // Added export
   visible?: boolean;
   title?: string;
   description?: string | null;

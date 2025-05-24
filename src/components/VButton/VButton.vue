@@ -25,7 +25,7 @@
 import Button from 'primevue/button';
 import { computed, useSlots } from 'vue';
 
-interface VButtonProps {
+export interface VButtonProps { // Added export
   /** Button label */
   label?: string | null;
   /** Button icon */

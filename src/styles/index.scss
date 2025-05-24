@@ -1,4 +1,4 @@
-/* Vennex UI Main Stylesheet */
+/* UI Component Library Main Stylesheet */
 
 /* Import SCSS modules and CSS files using @use */
 @use 'tailwindcss-primeui';
@@ -25,15 +25,15 @@
   @tailwind utilities;
 }
 
-/* Vennex custom variables */
+/* Custom variables */
 :root {
-  --vennex-primary: var(--primary-color, #54505f);
-  --vennex-secondary: #969da5;
-  --vennex-success: #22c55e;
-  --vennex-info: #3b82f6;
-  --vennex-warning: #f59e0b;
-  --vennex-danger: #ef4444;
-  --vennex-border-radius: var(--border-radius, 6px);
+  --ui-primary: var(--primary-color, #54505f);
+  --ui-secondary: #969da5;
+  --ui-success: #22c55e;
+  --ui-info: #3b82f6;
+  --ui-warning: #f59e0b;
+  --ui-danger: #ef4444;
+  --ui-border-radius: var(--border-radius, 6px);
   --font-family: 'Poppins', sans-serif; /* Set Poppins as the default font */
 }
 
