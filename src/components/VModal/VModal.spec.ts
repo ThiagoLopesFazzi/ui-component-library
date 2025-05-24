@@ -226,7 +226,7 @@ describe('VModal', () => {
 
       it('does not render default cancel button when footer slot is provided', () => {
         const wrapper = mount(VModal, {
-          props: { modelValue: true, header: 'Test Modal' },
+          props: { visible: true, header: 'Test Modal' },
           slots: {
             footer: '<div class="custom-footer">Custom Footer Content</div>',
           },
