@@ -217,7 +217,7 @@ describe('VModal', () => {
 
       it('renders default cancel button when footer slot is not provided', () => {
         const wrapper = mount(VModal, {
-          props: { modelValue: true, header: 'Test Modal' },
+          props: { visible: true, title: 'Test Modal' },
         });
         const cancelButton = wrapper.find('.v-modal__cancel-button');
         expect(cancelButton.exists()).toBe(true);
