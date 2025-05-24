@@ -150,7 +150,8 @@ describe('VModal', () => {
       it('should prevent closing if before-close is defaultPrevented', async () => {
         const onBeforeClose = (event: Event) => event.preventDefault();
         wrapper = mount(VModal, {
-          props: { ...defaultProps, visible: true, onBeforeClose },
+          props: { ...defaultProps, visible: true },
+          attrs: { onBeforeClose },
         });
         const dialogComponent = wrapper.findComponent(Dialog);
         // Simulate PrimeVue Dialog trying to close
