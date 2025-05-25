@@ -28,11 +28,22 @@
 /* Custom variables */
 :root {
   --ui-primary: var(--primary-color, #54505f);
+  --ui-primary-rgb: var(
+    --primary-color-rgb,
+    84,
+    80,
+    95
+  ); /* Added RGB version */
   --ui-secondary: #969da5;
+  --ui-secondary-rgb: 150, 157, 165; /* Added RGB version */
   --ui-success: #22c55e;
-  --ui-info: #3b82f6;
+  --ui-success-rgb: 34, 197, 94; /* Added RGB version */
+  --ui-info: #3b82f6; /* Consider if this blue matches the teal/cyan in the image, or update hex */
+  --ui-info-rgb: 59, 130, 246; /* Added RGB version */
   --ui-warning: #f59e0b;
+  --ui-warning-rgb: 245, 158, 11; /* Added RGB version */
   --ui-danger: #ef4444;
+  --ui-danger-rgb: 239, 68, 68; /* Added RGB version */
   --ui-border-radius: var(--border-radius, 6px);
   --font-family: 'Poppins', sans-serif; /* Set Poppins as the default font */
 }
