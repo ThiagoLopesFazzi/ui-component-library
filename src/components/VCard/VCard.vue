@@ -20,6 +20,7 @@
 </template>
 
 <script setup lang="ts">
+import Card from 'primevue/card';
 import { computed, useSlots } from 'vue';
 
 export interface VCardProps {

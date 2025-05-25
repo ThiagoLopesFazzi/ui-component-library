@@ -163,31 +163,106 @@ describe('VModal', () => {
     });
 
     describe('Pass-through (PT) Options & Styling', () => {
-      it('should apply size classes to Dialog root via PT', () => {
+      it('should pass an empty pt object to Dialog if no user pt is provided and no description', () => {
         wrapper = mount(VModal, {
-          props: { ...defaultProps, visible: true, size: 'large' },
+          props: { ...defaultProps, visible: true }, // No pt, no description
         });
         const dialogComponent = wrapper.findComponent(Dialog);
-        const ptConfig: any = dialogComponent.props('pt');
-        const ptRootClasses = ptConfig.root.class;
-        expect(ptRootClasses).toContain('v-modal__dialog--large');
+        const receivedPt: any = dialogComponent.props('pt');
+        expect(receivedPt).toEqual({});
       });
 
-      it('should apply custom overlay and dialog classes via PT', () => {
+      it('should add aria-describedby to root pt if description is provided, even with no user pt', () => {
+        const descriptionText = 'Test description';
+        wrapper = mount(VModal, {
+          props: {
+            ...defaultProps,
+            visible: true,
+            description: descriptionText,
+          },
+        });
+        const dialogComponent = wrapper.findComponent(Dialog);
+        const receivedPt: any = dialogComponent.props('pt');
+        expect(receivedPt.root).toBeDefined();
+        expect(receivedPt.root['aria-describedby']).toContain(
+          'v-modal-description-'
+        );
+        // Check that other parts of pt are not unexpectedly created
+        expect(Object.keys(receivedPt).length).toBe(1); // Only 'root'
+        expect(Object.keys(receivedPt.root).length).toBe(1); // Only 'aria-describedby' in root
+      });
+
+      it('should merge aria-describedby with user-provided pt for root', () => {
+        const userPt = {
+          root: { class: 'my-root-class', style: 'color: red;' },
+        };
+        const descriptionText = 'Test description';
+        wrapper = mount(VModal, {
+          props: {
+            ...defaultProps,
+            visible: true,
+            pt: userPt,
+            description: descriptionText,
+          },
+        });
+        const dialogComponent = wrapper.findComponent(Dialog);
+        const receivedPt: any = dialogComponent.props('pt');
+        expect(receivedPt.root.class).toBe('my-root-class');
+        expect(receivedPt.root.style).toBe('color: red;');
+        expect(receivedPt.root['aria-describedby']).toContain(
+          'v-modal-description-'
+        );
+      });
+
+      it('should pass user-provided pt for other sections untouched if description is provided', () => {
+        const userPt = { header: { class: 'my-header-class' } };
+        const descriptionText = 'Test description';
+        wrapper = mount(VModal, {
+          props: {
+            ...defaultProps,
+            visible: true,
+            pt: userPt,
+            description: descriptionText,
+          },
+        });
+        const dialogComponent = wrapper.findComponent(Dialog);
+        const receivedPt: any = dialogComponent.props('pt');
+        expect(receivedPt.header.class).toBe('my-header-class');
+        expect(receivedPt.root).toBeDefined(); // From description
+        expect(receivedPt.root['aria-describedby']).toContain(
+          'v-modal-description-'
+        );
+      });
+
+      it('should pass user-provided pt for mask and other sections directly to Dialog', () => {
+        const userPt = {
+          mask: { class: 'custom-mask-class' },
+          content: { style: 'padding: 10px;' },
+        };
+        wrapper = mount(VModal, {
+          props: { ...defaultProps, visible: true, pt: userPt },
+        });
+        const dialogComponent = wrapper.findComponent(Dialog);
+        const receivedPt: any = dialogComponent.props('pt');
+        expect(receivedPt.mask.class).toBe('custom-mask-class');
+        expect(receivedPt.content.style).toBe('padding: 10px;');
+        // Ensure root is not created if not in userPt and no description
+        expect(receivedPt.root).toBeUndefined();
+      });
+
+      it('should correctly pass blocking prop to Dialog modal prop', () => {
         wrapper = mount(VModal, {
           props: { ...defaultProps, visible: true, blocking: true },
         });
         const dialogComponent = wrapper.findComponent(Dialog);
-        const ptConfig: any = dialogComponent.props('pt');
-        const ptMaskClasses = ptConfig?.mask?.class;
-        const ptRootClasses = ptConfig?.root?.class;
+        expect(dialogComponent.props('modal')).toBe(true);
 
-        expect(ptMaskClasses).toContain('v-modal__overlay');
-        // Check for the object that conditionally applies the class
-        expect(ptMaskClasses).toContainEqual({
-          'v-modal__overlay--blocking': true,
+        wrapper.unmount(); // Clean up previous wrapper before mounting a new one
+        wrapper = mount(VModal, {
+          props: { ...defaultProps, visible: true, blocking: false },
         });
-        expect(ptRootClasses).toContain('v-modal__dialog');
+        const dialogComponent2 = wrapper.findComponent(Dialog);
+        expect(dialogComponent2.props('modal')).toBe(false);
       });
     });
 

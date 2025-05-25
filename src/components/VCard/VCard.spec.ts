@@ -15,7 +15,7 @@ describe('VCard', () => {
   describe('Component Tests with Real PrimeCard', () => {
     it('should render the PrimeVue Card component', () => {
       wrapper = mount(VCard, {
-        global: { components: { PrimeCard } }, // Ensure PrimeCard is registered if not globally
+        global: { components: { Card: PrimeCard } }, // Changed PrimeCard to Card: PrimeCard
       });
       expect(wrapper.findComponent(PrimeCard).exists()).toBe(true);
     });
@@ -24,7 +24,7 @@ describe('VCard', () => {
       const ptOptions = { root: { class: 'custom-card-root' } };
       wrapper = mount(VCard, {
         props: { pt: ptOptions },
-        global: { components: { PrimeCard } },
+        global: { components: { Card: PrimeCard } }, // Changed PrimeCard to Card: PrimeCard
       });
       const primeCardComponent = wrapper.findComponent(PrimeCard);
       expect(primeCardComponent.props('pt')).toEqual(ptOptions);
@@ -35,7 +35,7 @@ describe('VCard', () => {
         const headerContent = '<div class="test-header">Header Content</div>';
         wrapper = mount(VCard, {
           slots: { header: headerContent },
-          global: { components: { PrimeCard } },
+          global: { components: { Card: PrimeCard } }, // Changed PrimeCard to Card: PrimeCard
         });
         // Check within the PrimeCard component for the slot content
         const primeCardWrapper = wrapper.findComponent(PrimeCard);
@@ -49,7 +49,7 @@ describe('VCard', () => {
         const titleContent = '<div class="test-title">Title Content</div>';
         wrapper = mount(VCard, {
           slots: { title: titleContent },
-          global: { components: { PrimeCard } },
+          global: { components: { Card: PrimeCard } }, // Changed PrimeCard to Card: PrimeCard
         });
         const primeCardWrapper = wrapper.findComponent(PrimeCard);
         expect(primeCardWrapper.find('.test-title').exists()).toBe(true);
@@ -63,7 +63,7 @@ describe('VCard', () => {
           '<div class="test-subtitle">Subtitle Content</div>';
         wrapper = mount(VCard, {
           slots: { subtitle: subtitleContent },
-          global: { components: { PrimeCard } },
+          global: { components: { Card: PrimeCard } }, // Changed PrimeCard to Card: PrimeCard
         });
         const primeCardWrapper = wrapper.findComponent(PrimeCard);
         expect(primeCardWrapper.find('.test-subtitle').exists()).toBe(true);
@@ -76,7 +76,7 @@ describe('VCard', () => {
         const contentSlot = '<div class="test-content">Main Content</div>';
         wrapper = mount(VCard, {
           slots: { content: contentSlot },
-          global: { components: { PrimeCard } },
+          global: { components: { Card: PrimeCard } }, // Changed PrimeCard to Card: PrimeCard
         });
         const primeCardWrapper = wrapper.findComponent(PrimeCard);
         expect(primeCardWrapper.find('.test-content').exists()).toBe(true);
@@ -89,7 +89,7 @@ describe('VCard', () => {
         const footerContent = '<div class="test-footer">Footer Content</div>';
         wrapper = mount(VCard, {
           slots: { footer: footerContent },
-          global: { components: { PrimeCard } },
+          global: { components: { Card: PrimeCard } }, // Changed PrimeCard to Card: PrimeCard
         });
         const primeCardWrapper = wrapper.findComponent(PrimeCard);
         expect(primeCardWrapper.find('.test-footer').exists()).toBe(true);
@@ -103,7 +103,7 @@ describe('VCard', () => {
           '<div class="test-default">Default Slot Content</div>';
         wrapper = mount(VCard, {
           slots: { default: defaultSlotContent },
-          global: { components: { PrimeCard } },
+          global: { components: { Card: PrimeCard } }, // Changed PrimeCard to Card: PrimeCard
         });
         expect(wrapper.vm.hasNamedSlots).toBe(false);
         const primeCardWrapper = wrapper.findComponent(PrimeCard);
@@ -122,7 +122,7 @@ describe('VCard', () => {
             header: headerContent,
             default: defaultSlotContent,
           },
-          global: { components: { PrimeCard } },
+          global: { components: { Card: PrimeCard } }, // Changed PrimeCard to Card: PrimeCard
         });
         expect(wrapper.vm.hasNamedSlots).toBe(true);
         const primeCardWrapper = wrapper.findComponent(PrimeCard);
@@ -138,14 +138,14 @@ describe('VCard', () => {
     it('hasNamedSlots computed property works correctly', () => {
       wrapper = mount(VCard, {
         slots: { header: '<div>Header</div>' },
-        global: { components: { PrimeCard } },
+        global: { components: { Card: PrimeCard } }, // Changed PrimeCard to Card: PrimeCard
       });
       expect(wrapper.vm.hasNamedSlots).toBe(true);
       wrapper.unmount();
 
       wrapper = mount(VCard, {
         slots: { default: '<div>Default</div>' },
-        global: { components: { PrimeCard } },
+        global: { components: { Card: PrimeCard } }, // Changed PrimeCard to Card: PrimeCard
       });
       expect(wrapper.vm.hasNamedSlots).toBe(false);
       wrapper.unmount();
@@ -155,12 +155,12 @@ describe('VCard', () => {
           title: '<div>Title</div>',
           subtitle: '<div>Subtitle</div>',
         },
-        global: { components: { PrimeCard } },
+        global: { components: { Card: PrimeCard } }, // Changed PrimeCard to Card: PrimeCard
       });
       expect(wrapper.vm.hasNamedSlots).toBe(true);
       wrapper.unmount();
 
-      wrapper = mount(VCard, { global: { components: { PrimeCard } } }); // No slots
+      wrapper = mount(VCard, { global: { components: { Card: PrimeCard } } }); // No slots // Changed PrimeCard to Card: PrimeCard
       expect(wrapper.vm.hasNamedSlots).toBe(false);
     });
   });

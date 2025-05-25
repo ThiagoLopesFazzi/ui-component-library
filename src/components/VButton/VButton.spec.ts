@@ -32,36 +32,32 @@ describe('VButton', () => {
   });
 
   describe('PassThrough (pt) prop merging logic', () => {
-    it('should apply default pt styles and classes', () => {
+    it('should pass null pt to PrimeVue Button if no pt prop is provided to VButton', () => {
       const wrapper = mount(VButton);
       const primeButton = wrapper.findComponent({ name: 'Button' }); // Find the underlying PrimeVue button
-      expect(primeButton.props().pt.root.style.fontSize).toBe('14px');
-      expect(primeButton.props().pt.root.style.borderRadius).toBe('6px');
-      expect(primeButton.props().pt.root.class).toContain(
-        'v-button-default-root'
-      );
+      expect(primeButton.props().pt).toBeNull();
     });
 
-    it('should merge user-provided pt styles with default, user taking precedence', () => {
+    it('should pass user-provided pt styles and classes directly to PrimeVue Button', () => {
+      const userPt = {
+        root: {
+          style: {
+            fontSize: '20px',
+            color: 'blue',
+          },
+          class: 'user-root-class',
+        },
+      };
       const wrapper = mount(VButton, {
         props: {
-          pt: {
-            root: {
-              style: {
-                fontSize: '20px', // Override default
-                color: 'blue', // Add new
-              },
-            },
-          },
+          pt: userPt,
         },
       });
       const primeButton = wrapper.findComponent({ name: 'Button' });
-      expect(primeButton.props().pt.root.style.fontSize).toBe('20px');
-      expect(primeButton.props().pt.root.style.borderRadius).toBe('6px'); // Default should persist
-      expect(primeButton.props().pt.root.style.color).toBe('blue');
+      expect(primeButton.props().pt).toEqual(userPt);
     });
 
-    it('should use user-provided pt class, overriding default class', () => {
+    it('should pass user-provided pt class directly to PrimeVue Button', () => {
       const wrapper = mount(VButton, {
         props: {
           pt: {
@@ -75,23 +71,23 @@ describe('VButton', () => {
       expect(primeButton.props().pt.root.class).toBe('my-custom-class');
     });
 
-    it('should apply default pt class if user pt provides style but no class for root', () => {
+    it('should pass user-provided pt with style and no class, resulting in undefined class for that section', () => {
+      const userPt = {
+        root: {
+          style: { color: 'red' },
+        },
+      };
       const wrapper = mount(VButton, {
         props: {
-          pt: {
-            root: {
-              style: { color: 'red' },
-            },
-          },
+          pt: userPt,
         },
       });
       const primeButton = wrapper.findComponent({ name: 'Button' });
-      expect(primeButton.props().pt.root.class).toContain(
-        'v-button-default-root'
-      );
+      expect(primeButton.props().pt.root.style.color).toBe('red');
+      expect(primeButton.props().pt.root.class).toBeUndefined();
     });
 
-    it('should handle pt for sections not defined in vButtonDefaultPt', () => {
+    it('should pass pt for any valid PrimeVue Button section', () => {
       const wrapper = mount(VButton, {
         props: {
           pt: {
@@ -108,23 +104,21 @@ describe('VButton', () => {
       expect(primeButton.props().pt.label.style.fontWeight).toBe('bold');
     });
 
-    it('should remove style property if it becomes an empty object after merge', () => {
-      // This test relies on a section not present in vButtonDefaultPt,
-      // and the user providing an empty style object for it.
-      // The component logic should remove the style object, and if the section becomes empty, remove the section.
+    it('should pass through a section with an empty style object', () => {
+      // This test verifies that VButton passes the pt object as is,
+      // even if a section contains an empty style object.
+      const userPt = {
+        icon: {
+          style: {},
+        },
+      };
       const wrapper = mount(VButton, {
         props: {
-          pt: {
-            icon: {
-              // 'icon' is another valid section, not in vButtonDefaultPt with styles
-              style: {},
-            },
-          },
+          pt: userPt,
         },
       });
       const primeButton = wrapper.findComponent({ name: 'Button' });
-      // Expect the 'icon' section itself to be absent from the merged PT because it became empty
-      expect(primeButton.props().pt.icon).toBeUndefined();
+      expect(primeButton.props().pt.icon).toEqual({ style: {} });
     });
 
     it('should remove class property if it becomes undefined after merge (no default, no user class)', () => {
@@ -146,39 +140,19 @@ describe('VButton', () => {
       expect(primeButton.props().pt.badge.class).toBeUndefined();
     });
 
-    it('should remove a section if it becomes an empty object after merge', () => {
-      // This test relies on a section not present in vButtonDefaultPt,
-      // and the user providing an empty object for it.
+    it('should pass through an empty section object', () => {
+      // This test verifies that VButton passes the pt object as is,
+      // even if a section is an empty object.
+      const userPt = {
+        nonExistentSection: {},
+      };
       const wrapper = mount(VButton, {
         props: {
-          pt: {
-            nonExistentSection: {},
-          },
+          pt: userPt,
         },
       });
       const primeButton = wrapper.findComponent({ name: 'Button' });
-      // Expect the 'nonExistentSection' to be absent from the merged PT
-      expect(primeButton.props().pt.nonExistentSection).toBeUndefined();
-    });
-
-    it('should correctly merge when pt prop is not provided', () => {
-      const wrapper = mount(VButton, {
-        props: {
-          label: 'Test Button',
-          // pt prop is intentionally not provided to test the default null value
-        },
-      });
-
-      // Access the computed property through the Vue instance
-      const vm = wrapper.vm as any;
-      const ptOutput = vm.mergedPt;
-
-      // Expect the default vButtonDefaultPt to be used as userPt will be {}
-      // and vButtonDefaultPt contains the base class 'v-button-default-root'
-      expect(ptOutput.root.class).toContain('v-button-default-root');
-      // Add more specific assertions if vButtonDefaultPt has more structure
-      // For example, if vButtonDefaultPt.root.class is expected to be exactly 'v-button some-default-class'
-      // then expect(ptOutput.root.class).toBe('v-button some-default-class');
+      expect(primeButton.props().pt.nonExistentSection).toEqual({});
     });
   });
 });
