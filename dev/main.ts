@@ -1,32 +1,25 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import PrimeVue from 'primevue/config';
-import Material from '@primeuix/themes/material';
+import Funk from '../src/themes/Funk';
 
 // Import component library (local version)
-import VennexUI from '../src';
-import '../src/styles/index.scss';
+import UIComponentLibrary from '../src';
+import './global.css';
 
-// Create the app
 const app = createApp(App);
 
-// Configure PrimeVue with Aura preset
 app.use(PrimeVue, {
   theme: {
-    preset: Material,
-    ripple: true, // Enable ripple effect
+    preset: Funk,
+    ripple: true,
     options: {
-      // Added options for CSS Layer
-      cssLayer: {
-        name: 'primevue',
-        order: 'tailwind-base, primevue, tailwind-utilities',
-      },
+      prefix: 'p',
+      darkModeSelector: 'system',
+      cssLayer: false,
     },
   },
 });
 
-// Use Vennex UI component library
-app.use(VennexUI);
-
-// Mount the app
+app.use(UIComponentLibrary);
 app.mount('#app');
