@@ -20,7 +20,7 @@
             <label for="calendar-demo" class="font-semibold block mb-2"
               >Calendar</label
             >
-            <Calendar
+            <DatePicker
               id="calendar-demo"
               v-model="date"
               showIcon
@@ -31,7 +31,7 @@
             <label for="dropdown-demo" class="font-semibold block mb-2"
               >Dropdown</label
             >
-            <Dropdown
+            <Select
               id="dropdown-demo"
               v-model="selectedCity"
               :options="cities"
@@ -65,8 +65,8 @@
             </template>
             <template #footer>
               <div class="flex flex-wrap justify-content-end gap-2">
-                <VButton label="Cancel" severity="secondary" />
-                <VButton label="Save" severity="primary" />
+                <Button label="Cancel" severity="secondary" />
+                <Button label="Save" severity="primary" />
               </div>
             </template>
           </VCard>
@@ -79,7 +79,7 @@
           <div class="grid grid-cols-4 gap-[1rem]">
             <div class="demo-box">
               <h3 class="demo-title">Basic Modal</h3>
-              <VButton
+              <Button
                 label="Open Basic Modal"
                 severity="primary"
                 @click="showBasicModal = true"
@@ -89,7 +89,7 @@
 
             <div class="demo-box">
               <h3 class="demo-title">Large Modal with Description</h3>
-              <VButton
+              <Button
                 label="Open Large Modal"
                 severity="info"
                 @click="showLargeModal = true"
@@ -99,7 +99,7 @@
 
             <div class="demo-box">
               <h3 class="demo-title">Confirmation Modal</h3>
-              <VButton
+              <Button
                 label="Delete Item"
                 severity="danger"
                 @click="showConfirmModal = true"
@@ -109,7 +109,7 @@
 
             <div class="demo-box">
               <h3 class="demo-title">Custom Header Modal</h3>
-              <VButton
+              <Button
                 label="Open Custom Modal"
                 severity="warning"
                 @click="showCustomModal = true"
@@ -158,12 +158,12 @@
             </div>
             <template #footer>
               <div class="flex justify-content-end gap-2">
-                <VButton
+                <Button
                   label="Cancel"
                   severity="secondary"
                   @click="showLargeModal = false"
                 />
-                <VButton label="Save" severity="success" @click="handleSave" />
+                <Button label="Save" severity="success" @click="handleSave" />
               </div>
             </template>
           </VModal>
@@ -185,12 +185,12 @@
             </div>
             <template #footer>
               <div class="flex justify-content-center gap-2">
-                <VButton
+                <Button
                   label="Cancel"
                   severity="secondary"
                   @click="showConfirmModal = false"
                 />
-                <VButton
+                <Button
                   label="Delete"
                   severity="danger"
                   @click="handleDelete"
@@ -234,33 +234,33 @@
       </section>
 
       <section class="component-section card">
-        <h2 class="section-title">VButton Component</h2>
+        <h2 class="section-title">Button Component</h2>
         <div class="grid grid-cols-4 gap-[1rem]">
           <div class="demo-box">
             <h3 class="demo-title">Severities</h3>
             <div class="flex flex-wrap gap-[1rem]">
-              <VButton
+              <Button
                 label="Primary"
                 severity="primary"
                 class="w-full sm:w-auto"
               />
-              <VButton
+              <Button
                 label="Secondary"
                 severity="secondary"
                 class="w-full sm:w-auto"
               />
-              <VButton
+              <Button
                 label="Success"
                 severity="success"
                 class="w-full sm:w-auto"
               />
-              <VButton label="Info" severity="info" class="w-full sm:w-auto" />
-              <VButton
+              <Button label="Info" severity="info" class="w-full sm:w-auto" />
+              <Button
                 label="Warning"
-                severity="warning"
+                severity="warn"
                 class="w-full sm:w-auto"
               />
-              <VButton
+              <Button
                 label="Danger"
                 severity="danger"
                 class="w-full sm:w-auto"
@@ -271,30 +271,30 @@
           <div class="demo-box">
             <h3 class="demo-title">Variants</h3>
             <div class="flex flex-wrap gap-[1rem]">
-              <VButton
+              <Button
                 label="Default"
                 severity="primary"
                 class="w-full sm:w-auto"
               />
-              <VButton
+              <Button
                 label="Outlined"
                 severity="primary"
                 outlined
                 class="w-full sm:w-auto"
               />
-              <VButton
+              <Button
                 label="Raised"
                 severity="primary"
                 raised
                 class="w-full sm:w-auto"
               />
-              <VButton
+              <Button
                 label="Rounded"
                 severity="primary"
                 rounded
                 class="w-full sm:w-auto"
               />
-              <VButton
+              <Button
                 label="Text"
                 severity="primary"
                 text
@@ -306,69 +306,53 @@
           <div class="demo-box">
             <h3 class="demo-title">With Icons</h3>
             <div class="flex flex-wrap gap-[1rem]">
-              <VButton
+              <Button
                 label="Save"
                 icon="pi pi-save"
                 severity="primary"
                 class="w-full sm:w-auto"
               />
-              <VButton
+              <Button
                 label="Delete"
                 icon="pi pi-trash"
                 severity="danger"
                 class="w-full sm:w-auto"
               />
-              <VButton
+              <Button
                 label="Search"
                 icon="pi pi-search"
                 iconPos="right"
                 severity="info"
                 class="w-full sm:w-auto"
               />
-              <VButton
-                icon="pi pi-check"
-                severity="success"
-                rounded
-                class="w-full sm:w-auto"
-              />
-              <VButton
-                icon="pi pi-bookmark"
-                severity="warning"
-                rounded
-                outlined
-                class="w-full sm:w-auto"
-              />
+              <Button icon="pi pi-check" severity="success" rounded />
+              <Button icon="pi pi-bookmark" severity="warn" rounded outlined />
             </div>
           </div>
 
           <div class="demo-box">
             <h3 class="demo-title">States & Sizes</h3>
             <div class="flex flex-wrap gap-[1rem]">
-              <VButton
-                label="Loading"
-                loading
-                severity="primary"
-                class="w-full sm:w-auto"
-              />
-              <VButton
+              <Button label="Loading" loading class="w-full sm:w-auto" />
+              <Button
                 label="Disabled"
                 disabled
                 severity="primary"
                 class="w-full sm:w-auto"
               />
-              <VButton
+              <Button
                 label="With Badge"
                 badge="3"
                 severity="primary"
                 class="w-full sm:w-auto"
               />
-              <VButton
+              <Button
                 label="Small"
                 size="small"
                 severity="primary"
                 class="w-full sm:w-auto"
               />
-              <VButton
+              <Button
                 label="Large"
                 size="large"
                 severity="primary"
@@ -385,9 +369,6 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import Message from 'primevue/message';
-import Calendar from 'primevue/calendar';
-import Dropdown from 'primevue/dropdown';
 
 // Demo data
 const date = ref(new Date());
@@ -422,31 +403,9 @@ const handleDelete = () => {
 <style scoped>
 /* General Page Styles */
 .page-container {
-  background-color: #f8f9fa; /* Light gray background */
   min-height: 100vh;
-  font-family: 'Inter', sans-serif; /* Modern sans-serif font */
-}
-
-.app-header {
-  background-color: var(--surface-card, #ffffff);
-  padding: 2rem;
-  text-align: center;
-  border-bottom: 1px solid var(--surface-border, #dee2e6);
-  margin-bottom: 2rem;
-}
-
-.app-header h1 {
-  color: var(--primary-color, #3b82f6); /* Use PrimeVue primary color */
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-}
-
-.container {
-  width: 70%; /* Use full width */
-  /* max-width: 1200px; */ /* Removed max-width to allow full width */
-  margin: 0 auto; /* Removed auto margin as it's for fixed-width centering */
-  padding: 0 2rem 2rem; /* Retain horizontal padding */
+  max-width: 60vw;
+  margin: 0 auto;
 }
 
 /* Component Section Styling */
@@ -496,13 +455,6 @@ const handleDelete = () => {
   margin-bottom: 1.25rem; /* Increased margin */
 }
 
-/* Ensure buttons in demo boxes take full width if desired, or adjust as needed */
-.demo-box .p-button,
-.demo-box .v-button {
-  /* Assuming VButton renders a p-button or similar */
-  /* width: 100%; */ /* Uncomment if all buttons in demo boxes should be full width */
-}
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .app-header h1 {
@@ -522,27 +474,6 @@ const handleDelete = () => {
   }
 }
 
-/* PrimeVue Customizations (Optional - if needed beyond theme) */
-:deep(.p-message) {
-  margin-top: 1rem;
-}
-
-:deep(.p-calendar, .p-dropdown) {
-  width: 100%; /* Ensure form elements take full width in their grid cells */
-}
-
-/* Add a nice focus state to inputs/buttons if not already sufficient */
-:deep(
-    button:focus-visible,
-    input:focus-visible,
-    [role='button']:focus-visible
-  ) {
-  outline: 2px solid var(--primary-color, #3b82f6);
-  outline-offset: 2px;
-  box-shadow: 0 0 0 3px var(--primary-color-light, #bfdbfe); /* Example focus ring */
-}
-
-/* Styling for labels */
 label {
   display: block;
   margin-bottom: 0.5rem;
@@ -550,7 +481,6 @@ label {
   color: var(--text-color-secondary, #4b5563);
 }
 
-/* Grid consistency */
 .grid {
   margin-left: -0.75rem; /* Counteract padding on columns for alignment */
   margin-right: -0.75rem;

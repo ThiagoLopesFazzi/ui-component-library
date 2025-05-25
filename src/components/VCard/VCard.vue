@@ -21,10 +21,8 @@
 
 <script setup lang="ts">
 import { computed, useSlots } from 'vue';
-import Card from 'primevue/card';
 
 export interface VCardProps {
-  /** Custom PassThrough options for the underlying PrimeVue component */
   pt?: object | null;
 }
 

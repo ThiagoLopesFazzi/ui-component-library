@@ -5,6 +5,7 @@ import Funk from '../src/themes/Funk';
 
 // Import component library (local version)
 import UIComponentLibrary from '../src';
+import 'primeicons/primeicons.css';
 import './global.css';
 
 const app = createApp(App);
@@ -16,7 +17,10 @@ app.use(PrimeVue, {
     options: {
       prefix: 'p',
       darkModeSelector: 'system',
-      cssLayer: false,
+      cssLayer: {
+        name: 'primevue',
+        order: 'theme, base, primevue',
+      },
     },
   },
 });

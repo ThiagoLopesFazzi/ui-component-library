@@ -1,44 +1,26 @@
 import { definePreset } from '@primeuix/themes';
-import Nora from '@primeuix/themes/nora';
+// import Nora from '@primeuix/themes/nora';
 // import Material from '@primeuix/themes/material';
-// import Aura from '@primeuix/themes/aura';
+import Aura from '@primeuix/themes/aura';
+import { Preset } from '@primeuix/themes/types';
 
-const MyPreset = definePreset(Nora, {
-  semantic: {
-    colorScheme: {
-      light: {
-        surface: {
-          0: '#ffffff',
-          50: '{zinc.50}',
-          100: '{zinc.100}',
-          200: '{zinc.200}',
-          300: '{zinc.300}',
-          400: '{zinc.400}',
-          500: '{zinc.500}',
-          600: '{zinc.600}',
-          700: '{zinc.700}',
-          800: '{zinc.800}',
-          900: '{zinc.900}',
-          950: '{zinc.950}',
-        },
-      },
-      dark: {
-        surface: {
-          0: '#ffffff',
-          50: '{slate.50}',
-          100: '{slate.100}',
-          200: '{slate.200}',
-          300: '{slate.300}',
-          400: '{slate.400}',
-          500: '{slate.500}',
-          600: '{slate.600}',
-          700: '{slate.700}',
-          800: '{slate.800}',
-          900: '{slate.900}',
-          950: '{slate.950}',
+const MyPreset: Preset = definePreset(Aura, {
+  components: {
+    card: {
+      colorScheme: {
+        light: {
+          title: {
+            fontSize: '1.25rem',
+            fontWeight: '600',
+          },
+          subtitle: {
+            color: '{red.500}',
+          },
         },
       },
     },
+  },
+  semantic: {
     primary: {
       50: '{indigo.50}',
       100: '{indigo.100}',
@@ -50,94 +32,53 @@ const MyPreset = definePreset(Nora, {
       700: '{indigo.700}',
       800: '{indigo.800}',
       900: '{indigo.900}',
-      950: '{indigo.950}',
+    },
+    neutral: {
+      50: '#fafafa',
+      100: '#f5f5f5',
+      200: '#eeeeee',
+      300: '#e0e0e0',
+      400: '#bdbdbd',
+      500: '#9e9e9e',
+      600: '#757575',
+      700: '#616161',
+      800: '#424242',
+      900: '#212121',
+      950: '#121212',
+    },
+    colorScheme: {
+      light: {
+        primary: {
+          color: '{semantic.primary.900}',
+          inverseColor: '#ffffff',
+          hoverColor: '{yellow.900}',
+          activeColor: '{blue.800}',
+          focusColor: '{cyan.800}',
+        },
+        formField: {
+          hoverBorderColor: '{primary.color.500}',
+          focusBorderColor: '{red-500}',
+        },
+        highlight: {
+          background: '{zinc.950}',
+          focusBackground: '{green.700}',
+          color: '#ffffff',
+          focusColor: '#ffffff',
+        },
+      },
     },
   },
+  extend: {
+    formField: {
+      focusBorderWidth: '.3rem',
+    },
+  },
+  focusRing: {
+    width: '4px',
+    style: 'dashed',
+    color: '{red.500}',
+    offset: '1px',
+  },
 });
-
-// const funk = {
-//   name: 'funk', // Naming your custom theme
-//   colorScheme: {
-//     light: {
-//       //   ...baseLightScheme,
-//       ...Nora.components?.button?.colorScheme?.light,
-//       primary: {
-//         color: '#54505f', // from --ui-primary
-//         contrastColor: '#ffffff', // Assuming white text on primary
-//       },
-//       secondary: {
-//         color: '#969da5', // from --ui-secondary
-//         contrastColor: '#ffffff', // Assuming white text on secondary
-//       },
-//       success: {
-//         color: '#22c55e', // from --ui-success
-//         contrastColor: '#ffffff',
-//       },
-//       info: {
-//         color: '#3b82f6', // from --ui-info
-//         contrastColor: '#ffffff',
-//       },
-//       warning: {
-//         color: '#f59e0b', // from --ui-warning
-//         contrastColor: '#000000', // Assuming black text on warning
-//       },
-//       danger: {
-//         color: '#ef4444', // from --ui-danger
-//         contrastColor: '#ffffff',
-//       },
-//       text: {
-//         // ...baseLightText,
-//         color: '#333333', // Default body text color
-//       },
-//     },
-//     dark: {
-//       //   ...baseDarkScheme,
-//       primary: {
-//         color: '#7A778A', // Adjusted for dark mode
-//         contrastColor: '#ffffff',
-//       },
-//       secondary: {
-//         color: '#B0B6BF', // Adjusted for dark mode
-//         contrastColor: '#000000',
-//       },
-//       success: {
-//         color: '#34D399',
-//         contrastColor: '#000000',
-//       },
-//       info: {
-//         color: '#60A5FA',
-//         contrastColor: '#000000',
-//       },
-//       warning: {
-//         color: '#FBBF24',
-//         contrastColor: '#000000',
-//       },
-//       danger: {
-//         color: '#F87171',
-//         contrastColor: '#000000',
-//       },
-//       text: {
-//         // ...baseDarkText,
-//         color: '#D1D5DB', // Example dark mode text color
-//       },
-//     },
-//   },
-//   font: {
-//     // ...baseFont,
-//     family: 'Poppins, sans-serif', // from --font-family
-//   },
-//   borderRadius: {
-//     // ...baseBorderRadius,
-//     md: '6px', // Default medium border radius
-//   },
-//   components: {
-//     // ...baseComponents,
-//     // Example: If you want all buttons to have this border radius by default
-//     // button: {
-//     //     ...(baseComponents.button || {}), // Ensure baseComponents.button is an object
-//     //     borderRadius: '6px'
-//     // },
-//   },
-// };
 
 export default MyPreset;
