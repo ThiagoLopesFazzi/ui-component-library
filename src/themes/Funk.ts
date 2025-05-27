@@ -2,75 +2,69 @@ import { definePreset } from '@primeuix/themes';
 // import Nora from '@primeuix/themes/nora';
 // import Material from '@primeuix/themes/material';
 import Aura from '@primeuix/themes/aura';
-import { Preset } from '@primeuix/themes/types';
+import { BaseDesignTokens, Preset } from '@primeuix/themes/types';
 
-const MyPreset: Preset = definePreset(Aura, {
+const funk: Preset<BaseDesignTokens> = definePreset(Aura, {
   components: {
     card: {
-      colorScheme: {
-        light: {
-          title: {
-            fontSize: '1.25rem',
-            fontWeight: '600',
-          },
-          subtitle: {
-            color: '{red.500}',
-          },
-        },
+      root: {
+        color: '{semantic.primary.900}',
+        background: '{slate.50}',
+        shadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+        borderRadius: '0.2rem',
       },
+      body: {
+        padding: '1.5rem',
+      },
+      title: {
+        fontSize: '1.25rem',
+        fontWeight: '600',
+      },
+      subtitle: {
+        color: '{semantic.primary.900}',
+      },
+      caption: {
+        gap: '2rem',
+      },
+      extend: {},
     },
   },
   semantic: {
     primary: {
-      50: '{indigo.50}',
-      100: '{indigo.100}',
-      200: '{indigo.200}',
-      300: '{indigo.300}',
-      400: '{indigo.400}',
-      500: '{indigo.500}',
-      600: '{indigo.600}',
-      700: '{indigo.700}',
-      800: '{indigo.800}',
-      900: '{indigo.900}',
-    },
-    neutral: {
-      50: '#fafafa',
-      100: '#f5f5f5',
-      200: '#eeeeee',
-      300: '#e0e0e0',
-      400: '#bdbdbd',
-      500: '#9e9e9e',
-      600: '#757575',
-      700: '#616161',
-      800: '#424242',
-      900: '#212121',
-      950: '#121212',
+      50: '{sky.50}',
+      100: '{sky.100}',
+      200: '{sky.200}',
+      300: '{sky.300}',
+      400: '{sky.400}',
+      500: '{sky.500}',
+      600: '{sky.600}',
+      700: '{sky.700}',
+      800: '{sky.800}',
+      900: '{sky.900}',
+      950: '{sky.950}',
     },
     colorScheme: {
       light: {
         primary: {
-          color: '{semantic.primary.900}',
+          color: '{semantic.primary.950}',
           inverseColor: '#ffffff',
-          hoverColor: '{yellow.900}',
-          activeColor: '{blue.800}',
-          focusColor: '{cyan.800}',
+          hoverColor: '{semantic.primary.900}',
+          activeColor: '{semantic.primary.800}',
         },
         formField: {
-          hoverBorderColor: '{primary.color.500}',
-          focusBorderColor: '{red-500}',
+          color: '{semantic.primary.900}',
+          borderColor: '{slate.400}',
+          background: '{slate.50}',
+          hoverBorderColor: '{semantic.primary.700}',
+          focusBorderColor: '{semantic.primary.950}',
         },
         highlight: {
-          background: '{zinc.950}',
-          focusBackground: '{green.700}',
+          background: '{semantic.primary.950}',
+          focusBackground: '{semantic.primary.950}',
           color: '#ffffff',
           focusColor: '#ffffff',
         },
       },
-    },
-  },
-  extend: {
-    formField: {
-      focusBorderWidth: '.3rem',
     },
   },
   focusRing: {
@@ -81,4 +75,4 @@ const MyPreset: Preset = definePreset(Aura, {
   },
 });
 
-export default MyPreset;
+export default funk;

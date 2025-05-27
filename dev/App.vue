@@ -48,7 +48,7 @@
         <div class="component-demo w-full">
           <VCard class="w-full">
             <template #header>
-              <div class="flex align-items-center justify-content-between">
+              <div class="flex items-center justify-between">
                 <span class="text-xl font-bold">Card Header</span>
                 <i class="pi pi-cog text-gray-500"></i>
               </div>
