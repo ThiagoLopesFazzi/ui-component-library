@@ -1,9 +1,8 @@
-import { css, definePreset } from '@primeuix/themes';
+import { definePreset } from '@primeuix/themes';
 // import Nora from '@primeuix/themes/nora';
 // import Material from '@primeuix/themes/material';
 import Aura from '@primeuix/themes/aura';
 import { BaseDesignTokens, Preset } from '@primeuix/themes/types';
-import { h } from 'vue';
 
 const funk: Preset<BaseDesignTokens> = definePreset(Aura, {
   components: {
@@ -14,6 +13,8 @@ const funk: Preset<BaseDesignTokens> = definePreset(Aura, {
           height: '4rem',
           backgroundColor: '#9d1804',
           hoverBackgroundColor: '#661a0e',
+          outlinedBorderColor: '#454241',
+          hoverSecondaryBackgroundColor: '#eeeded',
         },
       },
       css: ({ dt }) => `
@@ -33,6 +34,32 @@ const funk: Preset<BaseDesignTokens> = definePreset(Aura, {
           background: ${dt('button.root.hoverBackgroundColor')};
           color: ${dt('semantic.primary.0')};
           border: 0.1rem solid transparent;
+        }
+
+        .p-button-outlined {
+          background: ${dt('semantic.primary.0')};
+          border: 0.1rem solid ${dt('button.root.outlinedBorderColor')};
+          color: ${dt('button.root.outlinedBorderColor')};
+        }
+
+        .p-button-outlined:not(:disabled):hover {
+          background: ${dt('button.root.outlinedBorderColor')};
+          color: ${dt('semantic.primary.0')};
+          border: 0.1rem solid ${dt('button.root.outlinedBorderColor')};
+        }
+
+        .p-button-secondary {
+          background: ${dt('semantic.primary.0')};
+          border: 0.1rem solid ${dt('semantic.primary.0')};
+          color: ${dt('button.root.outlinedBorderColor')};
+        }
+
+        .p-button-secondary:not(:disabled):hover {
+          background: ${dt('button.root.hoverSecondaryBackgroundColor')};
+          color: ${dt('button.root.outlinedBorderColor')};
+          border: 0.1rem solid ${dt(
+            'button.root.hoverSecondaryBackgroundColor'
+          )};
         }
       `,
     },
