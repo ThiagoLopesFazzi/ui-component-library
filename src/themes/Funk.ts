@@ -3,6 +3,7 @@ import { definePreset } from '@primeuix/themes';
 // import Material from '@primeuix/themes/material';
 import Aura from '@primeuix/themes/aura';
 import { BaseDesignTokens, Preset } from '@primeuix/themes/types';
+import { error } from 'console';
 
 const funk: Preset<BaseDesignTokens> = definePreset(Aura, {
   components: {
@@ -27,38 +28,55 @@ const funk: Preset<BaseDesignTokens> = definePreset(Aura, {
           font-weight: 500;
           cursor: pointer;
           color: ${dt('semantic.primary.0')};
-          background: ${dt('button.root.backgroundColor')};
         }
 
-        .p-button:not(:disabled):hover {
-          background: ${dt('button.root.hoverBackgroundColor')};
-          color: ${dt('semantic.primary.0')};
-          border: 0.1rem solid transparent;
+        .p-button-primary {
+          background: ${dt('red.700')};
         }
 
-        .p-button-outlined {
-          background: ${dt('semantic.primary.0')};
-          border: 0.1rem solid ${dt('button.root.outlinedBorderColor')};
-          color: ${dt('button.root.outlinedBorderColor')};
-        }
-
-        .p-button-outlined:not(:disabled):hover {
-          background: ${dt('button.root.outlinedBorderColor')};
-          color: ${dt('semantic.primary.0')};
-          border: 0.1rem solid ${dt('button.root.outlinedBorderColor')};
+        .p-button-primary:not(:disabled):hover {
+          background: ${dt('red.800')};
         }
 
         .p-button-secondary {
-          background: ${dt('semantic.primary.0')};
-          border: 0.1rem solid ${dt('semantic.primary.0')};
+          background: transparent;
           color: ${dt('button.root.outlinedBorderColor')};
         }
 
         .p-button-secondary:not(:disabled):hover {
           background: ${dt('button.root.hoverSecondaryBackgroundColor')};
           color: ${dt('button.root.outlinedBorderColor')};
+        }
+
+        .p-button-outlined {
+          background: transparent;
+          border: 0.1rem solid ${dt('button.root.outlinedBorderColor')};
+          color: ${dt('button.root.outlinedBorderColor')};
+        }
+
+        .p-button-outlined:not(:disabled):hover {
+          background: ${dt('button.root.outlinedBorderColor')};
+          border: 0.1rem solid ${dt('button.root.outlinedBorderColor')};
+        }
+
+
+
+
+
+        .p-button-danger {
+          background: ${dt('semantic.primary.0')};
+          color: ${dt('semantic.colorScheme.light.primary.errorColor')};
           border: 0.1rem solid ${dt(
-            'button.root.hoverSecondaryBackgroundColor'
+            'semantic.colorScheme.light.primary.errorColor'
+          )};
+        }
+        }
+
+        .p-button-danger:not(:disabled):hover {
+          background: ${dt('semantic.colorScheme.light.primary.errorColor')};
+          color: ${dt('semantic.primary.0')};
+          border: 0.1rem solid ${dt(
+            'semantic.colorScheme.light.primary.errorColor'
           )};
         }
       `,
@@ -122,6 +140,10 @@ const funk: Preset<BaseDesignTokens> = definePreset(Aura, {
       900: '{sky.900}',
       950: '{sky.950}',
     },
+    red: {
+      700: '#9d1804',
+      800: '#661a0e',
+    },
     colorScheme: {
       light: {
         primary: {
@@ -129,6 +151,9 @@ const funk: Preset<BaseDesignTokens> = definePreset(Aura, {
           inverseColor: '#ffffff',
           hoverColor: '{semantic.primary.900}',
           activeColor: '{semantic.primary.800}',
+          errorColor: '#ff3f3f',
+          primaRed: '#9d1804',
+          secondaryRed: '#661a0e',
         },
         formField: {
           color: '{semantic.primary.900}',

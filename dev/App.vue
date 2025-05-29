@@ -357,7 +357,20 @@
                 size="large"
                 severity="primary"
                 class="w-full sm:w-auto"
-                åß
+              />
+              <Button
+                label="Danger"
+                size="large"
+                severity="danger"
+                class="w-full sm:w-auto"
+                outlined
+              />
+              <Button
+                label="Text"
+                size="large"
+                severity="secondary"
+                class="w-full sm:w-auto"
+                text
               />
             </div>
           </div>
