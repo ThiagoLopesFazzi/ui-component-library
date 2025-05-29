@@ -48,36 +48,50 @@ const funk: Preset<BaseDesignTokens> = definePreset(Aura, {
           color: ${dt('button.root.outlinedBorderColor')};
         }
 
-        .p-button-outlined {
+        .p-button-outlined.p-button-primary {
           background: transparent;
-          border: 0.1rem solid ${dt('button.root.outlinedBorderColor')};
-          color: ${dt('button.root.outlinedBorderColor')};
+          border: 0.2rem solid ${dt('red.700')};
+          color: ${dt('red.700')};
+        }
+
+        .p-button-outlined.p-button-primary:not(:disabled):hover  {
+          background: ${dt('red.700')};
+          border: 0.2rem solid ${dt('red.700')};
+          color: ${dt('semantic.primary.0')};
         }
 
         .p-button-outlined:not(:disabled):hover {
           background: ${dt('button.root.outlinedBorderColor')};
           border: 0.1rem solid ${dt('button.root.outlinedBorderColor')};
-        }
-
-
-
-
-
-        .p-button-danger {
-          background: ${dt('semantic.primary.0')};
-          color: ${dt('semantic.colorScheme.light.primary.errorColor')};
-          border: 0.1rem solid ${dt(
-            'semantic.colorScheme.light.primary.errorColor'
-          )};
-        }
-        }
-
-        .p-button-danger:not(:disabled):hover {
-          background: ${dt('semantic.colorScheme.light.primary.errorColor')};
           color: ${dt('semantic.primary.0')};
-          border: 0.1rem solid ${dt(
+        }
+
+        .p-button-outlined.p-button-secondary {
+          background: transparent;
+          border: 0.2rem solid ${dt('button.root.outlinedBorderColor')};
+          color: ${dt('button.root.outlinedBorderColor')};
+        }
+
+        .p-button-outlined.p-button-secondary:not(:disabled):hover {
+          background: ${dt('button.root.outlinedBorderColor')};
+          border: 0.2rem solid ${dt('button.root.outlinedBorderColor')};
+          color: ${dt('semantic.primary.0')};
+        }
+
+        .p-button-outlined.p-button-danger {
+          background: transparent;
+          border: 0.2rem solid ${dt(
             'semantic.colorScheme.light.primary.errorColor'
           )};
+          color: ${dt('semantic.colorScheme.light.primary.errorColor')};
+        }
+
+        .p-button-outlined.p-button-danger:not(:disabled):hover {
+          background: ${dt('semantic.colorScheme.light.primary.errorColor')};
+          border: 0.2rem solid ${dt(
+            'semantic.colorScheme.light.primary.errorColor'
+          )};
+          color: ${dt('semantic.primary.0')};
         }
       `,
     },

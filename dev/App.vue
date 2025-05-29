@@ -249,55 +249,28 @@
                 severity="secondary"
                 class="w-full sm:w-auto"
               />
-              <Button
-                label="Success"
-                severity="success"
-                class="w-full sm:w-auto"
-              />
-              <Button label="Info" severity="info" class="w-full sm:w-auto" />
-              <Button
-                label="Warning"
-                severity="warn"
-                class="w-full sm:w-auto"
-              />
-              <Button
-                label="Danger"
-                severity="danger"
-                class="w-full sm:w-auto"
-              />
             </div>
           </div>
 
           <div class="demo-box">
-            <h3 class="demo-title">Variants</h3>
+            <h3 class="demo-title">Outlined</h3>
             <div class="flex flex-wrap gap-[1rem]">
               <Button
-                label="Default"
-                severity="primary"
-                class="w-full sm:w-auto"
-              />
-              <Button
-                label="Outlined"
+                label="Primary"
                 severity="primary"
                 outlined
                 class="w-full sm:w-auto"
               />
               <Button
-                label="Raised"
-                severity="primary"
-                raised
+                label="Secondary"
+                severity="secondary"
+                outlined
                 class="w-full sm:w-auto"
               />
               <Button
-                label="Rounded"
-                severity="primary"
-                rounded
-                class="w-full sm:w-auto"
-              />
-              <Button
-                label="Text"
-                severity="primary"
-                text
+                label="Danger"
+                severity="danger"
+                outlined
                 class="w-full sm:w-auto"
               />
             </div>
@@ -345,32 +318,6 @@
                 badge="3"
                 severity="primary"
                 class="w-full sm:w-auto"
-              />
-              <Button
-                label="Small"
-                size="small"
-                severity="primary"
-                class="w-full sm:w-auto"
-              />
-              <Button
-                label="Large"
-                size="large"
-                severity="primary"
-                class="w-full sm:w-auto"
-              />
-              <Button
-                label="Danger"
-                size="large"
-                severity="danger"
-                class="w-full sm:w-auto"
-                outlined
-              />
-              <Button
-                label="Text"
-                size="large"
-                severity="secondary"
-                class="w-full sm:w-auto"
-                text
               />
             </div>
           </div>
