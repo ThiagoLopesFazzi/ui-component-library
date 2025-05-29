@@ -26,11 +26,27 @@ const funk: Preset<BaseDesignTokens> = definePreset(Aura, {
       caption: {
         gap: '2rem',
       },
-      extend: {},
+      extend: {
+        header: {
+          padding: '0.75rem 1.5rem',
+          color: '{semantic.primary.0}',
+          backgroundColor: '{semantic.primary.800}',
+          fontSize: '1.4rem',
+          fontWeight: '600',
+        },
+      },
+      css: ({ dt }) => `
+        .p-card-header {
+          color: ${dt('card.header.color')};
+          background-color: ${dt('card.header.backgroundColor')};
+          padding: ${dt('card.header.padding')};
+          font-size: ${dt('card.header.fontSize')};
+      }`,
     },
   },
   semantic: {
     primary: {
+      0: '#fff',
       50: '{sky.50}',
       100: '{sky.100}',
       200: '{sky.200}',
