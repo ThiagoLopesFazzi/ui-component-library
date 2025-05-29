@@ -1,17 +1,47 @@
-import { definePreset } from '@primeuix/themes';
+import { css, definePreset } from '@primeuix/themes';
 // import Nora from '@primeuix/themes/nora';
 // import Material from '@primeuix/themes/material';
 import Aura from '@primeuix/themes/aura';
 import { BaseDesignTokens, Preset } from '@primeuix/themes/types';
+import { h } from 'vue';
 
 const funk: Preset<BaseDesignTokens> = definePreset(Aura, {
   components: {
+    button: {
+      extend: {
+        root: {
+          borderRadius: '0.2rem',
+          height: '4rem',
+          backgroundColor: '#9d1804',
+          hoverBackgroundColor: '#661a0e',
+        },
+      },
+      css: ({ dt }) => `
+        .p-button {
+          border-radius: ${dt('button.root.borderRadius')};
+          height: ${dt('button.root.height')};
+          padding: 0.4rem 1.2rem;
+          border: 0.1rem solid transparent;
+          font-size: 1.4rem;
+          font-weight: 500;
+          cursor: pointer;
+          color: ${dt('semantic.primary.0')};
+          background: ${dt('button.root.backgroundColor')};
+        }
+
+        .p-button:not(:disabled):hover {
+          background: ${dt('button.root.hoverBackgroundColor')};
+          color: ${dt('semantic.primary.0')};
+          border: 0.1rem solid transparent;
+        }
+      `,
+    },
     card: {
       root: {
         color: '{semantic.primary.900}',
         background: '{slate.50}',
         shadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-        borderRadius: '0.2rem',
+        borderRadius: '0',
       },
       body: {
         padding: '1.5rem',
@@ -28,7 +58,7 @@ const funk: Preset<BaseDesignTokens> = definePreset(Aura, {
       },
       extend: {
         header: {
-          padding: '0.75rem 1.5rem',
+          padding: '0.75rem 1.5rem 0.75rem 1rem',
           color: '{semantic.primary.0}',
           backgroundColor: '{semantic.primary.800}',
           fontSize: '1.4rem',
@@ -41,7 +71,13 @@ const funk: Preset<BaseDesignTokens> = definePreset(Aura, {
           background-color: ${dt('card.header.backgroundColor')};
           padding: ${dt('card.header.padding')};
           font-size: ${dt('card.header.fontSize')};
-      }`,
+        }
+        .p-card-footer > div {
+          display: flex;
+          justify-content: end;
+          gap: 1rem;
+        }
+      `,
     },
   },
   semantic: {
