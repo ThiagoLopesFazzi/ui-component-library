@@ -1,7 +1,7 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import PrimeVue from 'primevue/config';
-import Funk from '../src/themes/Funk';
+import Funk from '../src/themes/funk/Funk';
 
 // Import component library (local version)
 import UIComponentLibrary from '../src';

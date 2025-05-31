@@ -44,6 +44,44 @@
       </section>
 
       <section class="component-section card">
+        <h2 class="section-title">Captable Component</h2>
+        <DataTable
+          :value="products"
+          tableStyle="min-width: 50rem"
+          sortMode="single"
+          dataKey="id"
+          :metaKeySelection="false"
+        >
+          <Column
+            v-for="col of columns"
+            :key="col.field"
+            :field="col.field"
+            :header="col.header"
+            :sortable="col.sortable"
+            :style="{ width: `${100 / columns.length}%` }"
+            :pt="{
+              columnheadercontent: {
+                style: {
+                  justifyContent: col.alignment,
+                },
+              },
+              bodycell: {
+                style: {
+                  textAlign: col.alignment,
+                  width: `${100 / columns.length}%`,
+                },
+              },
+            }"
+            @update:sortField="getActiveSortedColumn(value, $event)"
+          >
+            <template #sorticon="slotProps">
+              <i :class="`${getSortIconClass(slotProps)}`"></i>
+            </template>
+          </Column>
+        </DataTable>
+      </section>
+
+      <section class="component-section card">
         <h2 class="section-title">VCard Component</h2>
         <div class="component-demo w-full">
           <VCard class="w-full">
@@ -347,6 +385,76 @@ const showConfirmModal = ref(false);
 const showCustomModal = ref(false);
 const modalInput = ref('');
 
+const products = ref([
+  {
+    id: '1000',
+    code: 'f230fh0g3',
+    name: 'Bamboo Watch',
+    description: 'Product Description',
+    image: 'bamboo-watch.jpg',
+    price: 65,
+    category: 'Accessories',
+    quantity: 24,
+    inventoryStatus: 'INSTOCK',
+    rating: 5,
+  },
+  {
+    id: '1001',
+    code: 'nvklal433',
+    name: 'Black Watch',
+    description: 'Product Description',
+    image: 'black-watch.jpg',
+    price: 72,
+    category: 'Accessories',
+    quantity: 61,
+    inventoryStatus: 'INSTOCK',
+    rating: 4,
+  },
+  {
+    id: '1002',
+    code: 'zz21cz3c1',
+    name: 'Blue Band',
+    description: 'Product Description',
+    image: 'blue-band.jpg',
+    price: 79,
+    category: 'Fitness',
+    quantity: 2,
+    inventoryStatus: 'LOWSTOCK',
+    rating: 3,
+  },
+  {
+    id: '1003',
+    code: '244wgerg2',
+    name: 'Blue T-Shirt',
+    description: 'Product Description',
+    image: 'blue-t-shirt.jpg',
+    price: 29,
+    category: 'Clothing',
+    quantity: 25,
+    inventoryStatus: 'INSTOCK',
+    rating: 5,
+  },
+  {
+    id: '1004',
+    code: 'h456wer53',
+    name: 'Bracelet',
+    description: 'Product Description',
+    image: 'bracelet.jpg',
+    price: 15,
+    category: 'Accessories',
+    quantity: 73,
+    inventoryStatus: 'INSTOCK',
+    rating: 4,
+  },
+]);
+const columns = [
+  { field: 'code', header: 'Code', alignment: 'left', sortable: true },
+  { field: 'name', header: 'Name', alignment: 'right', sortable: true },
+  { field: 'category', header: 'Category', alignment: 'right', sortable: true },
+  { field: 'quantity', header: 'Quantity', alignment: 'left', sortable: true },
+  { field: 'price', header: 'Price', alignment: 'right', sortable: true },
+];
+
 // Modal event handlers
 const handleSave = () => {
   console.log('Saving data:', modalInput.value);
@@ -357,6 +465,28 @@ const handleSave = () => {
 const handleDelete = () => {
   console.log('Item deleted');
   showConfirmModal.value = false;
+};
+
+// Function to determine the sort icon class based on sort status
+const getSortIconClass = (slotProps: SortIconSlotProps) => {
+  // If column is sorted
+  if (slotProps.sorted) {
+    // Show up arrow when ascending (sortOrder === 1)
+    if (slotProps.sortOrder === 1) {
+      return 'pi pi-chevron-up';
+    }
+    // Show down arrow when descending (sortOrder === -1)
+    else {
+      return 'pi pi-chevron-down';
+    }
+  }
+  // Default state (not sorted)
+  return 'pi pi-chevron-down';
+};
+
+const getActiveSortedColumn = (value: string, even: Event) => {
+  console.log(value);
+  console.log(event);
 };
 </script>
 
